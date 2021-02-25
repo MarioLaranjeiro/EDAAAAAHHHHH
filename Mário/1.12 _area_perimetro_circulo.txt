@@ -1,0 +1,24 @@
+#include <stdio.h>
+void area (int r);
+void perimetro( int r);
+
+int main()
+{
+    int raio;
+    printf("Insira o raio do circulo:");
+    scanf(" %d",&raio);
+    area(raio);
+    perimetro(raio);
+    return 0;
+}
+  void area (int r)
+  {
+      int area=r*r*3.14;
+      printf("A área correspondente é : %d\n",area);
+  }
+  
+    void perimetro( int r)
+  {
+      int perimetro=r*2*3.14;
+      printf("O perimetro correspondente é : %d\n",perimetro);
+  }

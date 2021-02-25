@@ -1,0 +1,29 @@
+#include <stdio.h>
+int elevadoa();
+
+int main()
+{
+    
+int x,n;
+printf("Insira um numero\n");
+scanf(" %d",&x);
+printf("Insira um expoente\n");
+scanf(" %d",&n);
+
+int guardavalor= elevadoa(x,n);
+printf("\n%d^%d = %d\n",x,n,guardavalor);
+
+
+}
+  
+  int elevadoa( x,n )
+  {
+      if(n >0 )
+      {
+      x=x *x;
+ elevadoa(x,n-1);
+    
+      }
+ 
+      return x;
+  }

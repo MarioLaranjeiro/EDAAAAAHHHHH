@@ -1,0 +1,54 @@
+#include <stdio.h>
+void alineaA (double array[], unsigned int nElems);
+  
+void alineaB(double array[],unsigned int nElems);
+
+void alineaC(double array[],unsigned int nElems);
+
+int main()
+{
+    double array[1000000];
+    unsigned int nElems;
+    printf("Insira o nrElemns\n");
+    scanf(" %d",&nElems);
+    alineaA(array,nElems);
+    alineaB(array,nElems);
+    alineaC(array,nElems);
+    alineaB(array,nElems);
+    return 0;
+}
+
+  void alineaA (double array[], unsigned int nElems)
+  {
+      for(int i=0;i<nElems;i++)
+      {
+        array[i]= ((-1)^i)*i/1000;
+      }
+  }
+  
+void alineaB(double array[],unsigned int nElems)
+{
+    unsigned int i;
+    double media=0;
+    puts("\narray={");
+    for( i=0;i<nElems;i++)
+      {
+          printf(" %f," ,array[i]);
+          media=media+array[i];
+      }
+       puts("}");
+       media=media/i;
+       printf("\nA média é %f",media);
+}
+
+void alineaC(double array[],unsigned int nElems)
+{
+    for( i=0;i<nElems;i++)
+      { 
+          if(array[i]<0)
+          {
+              array[i]=array[i+1];
+          }
+          
+      }
+}

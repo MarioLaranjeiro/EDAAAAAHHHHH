@@ -1,0 +1,27 @@
+#include <stdio.h>
+int Fibonacci();
+
+int main()
+{
+    
+int x;
+printf("Insira um numero\n");
+scanf(" %d",&x);
+
+int guardavalor= Fibonacci(x);
+printf("fibo = %d\n",guardavalor);
+
+
+}
+  
+  int Fibonacci(x)
+  {
+     if(x>2)
+     {
+         x=Fibonacci(x-1)+Fibonacci(x-2);
+     }
+     else
+     x=1;
+ 
+      return x;
+  }

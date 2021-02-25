@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <string.h>
+#define stringelementnumber 30
+
+int main()
+{
+    int recordnumber;
+    char save[10000][20];
+    int comprimento_String[40];
+
+printf("Insira o número de records que quer armazenar\n");
+scanf(" %d",&recordnumber);
+
+
+for(int x=1;x<=recordnumber;x++)
+{   printf("record nº%d ->",x);
+    scanf(" %[^\n]",save[x]);
+    
+   comprimento_String[x]=Analisastring(x,save[x]);
+    printf("\n");
+   
+   if(x=recordnumber)
+   {
+       for(int i=1<=recordnumber;i++)
+    printf("Record %d -> %s\nO numero de elementos e : %d\n\n",x,save[x],comprimento_String[x]);
+   }
+
+
+    return 0;
+}
+
+int Analisastring(int x, char save[x])
+{
+    for(int x=1;x<=recordnumber;x++)
+    {
+        comprimento_String[x]=strlen(save[x]);
+        
+        switch (comprimento_String)
+        {
+        case(comprimento_String>stringelementnumber)
+        return
+        
+        break;
+        case(comprimento_String=stringelementnumber)
+        return
+        
+        break;
+        case(comprimento_String<stringelementnumber)
+        return
+        
+        break;
+        } 
+        
+        
+        
+    }
+
+}

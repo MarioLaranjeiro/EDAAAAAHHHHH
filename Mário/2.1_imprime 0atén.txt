@@ -1,19 +1,26 @@
-#include <stdio.h>
+int main()
+{
+    int n;
+    printf("PRINT UNTIL :   \n");
+    scanf("%d",&n);
 
-void imprimeAte(int n,int i)
-{ 
-   if (i<=n)
-   {
-       printf("\n%d",i);
-        imprimeAte( n,i+1 );
-   }
+   imprimeAte(n);
+    return 0;
 }
 
-int main() 
-{  
-    int n;
-    
-    printf("Insira o nr ");
-    scanf("%d",&n);
-    imprimeAte( n,0);
+void imprimeAte(int n){
+
+
+    if (n<1){ //<--------------------------------------- --------                    //explicação no caderno
+        printf("0");// imprime 0                                 |
+        return;  //  termina imprime(1)                          |
+    }          //        termina imprime(2)                      |
+             //                           ...                    |
+    else {  //                                                   |
+        imprimeAte(n-1);
+        // pausa a correr a função até n=0 |
+
+    printf("\t %d \t ",n);
+    }
+
 }

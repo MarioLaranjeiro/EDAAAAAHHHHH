@@ -1,30 +1,31 @@
 #include <stdio.h>
-
-void maiorvalorarray(int tab[],int n)
+int maiorvalorarray(int tab[],int size)
 { 
-     int maior;
-      if(maior<*tab && *tab<=tab[n-1])
-    {
-     maior=*tab;
-    maiorvalorarray(tab+1,n);
-    }
-    
-    else
-   printf("o maior valor é %d",maior);
+   static int maior;
+  
+      if(maior>tab[size])
+      {
+        maior=tab[size];
+        maiorvalorarray(tab,size-1);
+      } 
+      else
+      maiorvalorarray(tab,size-1);
+  
+  printf("%d",maior);
 
+return maior;
 }
 
 int main() 
 {  
     int n;
-    int array[n];
-    
     printf("Insira o nr de elementos: ");
     scanf("%d",&n);
-    
+    int array[n];
     for(int i=0;i<n;i++)
     {
-    scanf("%d",&array[i]);
+    scanf("%d ",&array[i]);
     }
-    maiorvalorarray(&array[0],n);
+  printf("ola");
+    printf("o maior valor é %d",maiorvalorarray(array,n-1));
 }

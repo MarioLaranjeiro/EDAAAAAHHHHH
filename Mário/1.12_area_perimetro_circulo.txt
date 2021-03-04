@@ -1,24 +1,34 @@
 #include <stdio.h>
-void area (int r);
-void perimetro( int r);
+#include <math.h>
 
+
+void areaperi(double n,double *A, double *P);// nao e possivel fazer return de 2 valores por isso vou usar pointers
 int main()
 {
-    int raio;
-    printf("Insira o raio do circulo:");
-    scanf(" %d",&raio);
-    area(raio);
-    perimetro(raio);
-    return 0;
+
+    double area=0;            // area | 0 |  (guardado no endereço 5000 (por motivos de demonstração) )
+    double perimetro=0;
+    double r=0;
+
+
+   printf("RAIO: "); //OUTPUT
+   scanf("%lf",&r);
+
+
+   areaperi(r,&area,&perimetro);
+
+
+   printf("\nAREA DO CIRCULO: %lf\n ",area);
+   printf("PERIMETRO DO CIRCULO: %lf\n",perimetro);
 }
-  void area (int r)
-  {
-      int area=r*r*3.14;
-      printf("A área correspondente é : %d\n",area);
-  }
-  
-    void perimetro( int r)
-  {
-      int perimetro=r*2*3.14;
-      printf("O perimetro correspondente é : %d\n",perimetro);
-  }
+
+
+
+void areaperi(double r, double *A, double *P){    // ponteiro *A tem o endereço de area(5000)
+    const double pi=3.141593;
+
+
+   *A = pi * pow(r,2);                            //ponteiro guarda o resultado na formula "pi* pow(r,2)" no endereço 5000 logo --> area | pi* pow(r,2) |
+   *P = 2 * pi * r;
+
+}

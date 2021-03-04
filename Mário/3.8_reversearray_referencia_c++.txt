@@ -4,18 +4,18 @@
 #include <iostream>
 using namespace std;
 
-void swapRef(int *arr1, int *arr2)
+void swapRef(int &arr1, int &arr2)
 {
-    int temp = *arr1;
-    *arr1 = *arr2;
-    *arr2 = temp;
+    int temp = arr1;
+    arr1 = arr2;
+    arr2 = temp;
 
  }
 
 void reverseArray(int *arr, int dim)
 {
     for(int i=0;i<dim/2;i++)
-        swapRef(&arr[i],&arr[dim-i-1]);
+        swapRef(arr[i],arr[dim-i-1]);
 
 }
 

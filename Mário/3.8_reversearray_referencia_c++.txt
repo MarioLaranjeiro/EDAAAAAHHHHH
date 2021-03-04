@@ -1,0 +1,55 @@
+
+// Iterative C++ program to reverse an array
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+
+void swapRef(int *arr1, int *arr2)
+{
+    int temp = *arr1;
+    *arr1 = *arr2;
+    *arr2 = temp;
+
+ }
+
+void reverseArray(int *arr, int dim)
+{
+    for(int i=0;i<dim/2;i++)
+        swapRef(&arr[i],&arr[dim-i-1]);
+
+}
+
+
+void printArray(int arr[], int size)
+{
+   for (int i = 0; i < size; i++)
+   cout << arr[i] << " ";
+
+   cout << endl;
+}
+
+
+int main()
+{
+   int dim;
+
+   cout<< "insrt nr of elements of arrays";
+   cin >> dim;
+    int arr[dim];
+   for(int i=0;i<dim;i++)
+       cin >> arr[i];
+
+    // To print original array
+    printArray(arr, dim);
+
+    // Function calling
+     reverseArray(arr, dim);
+
+    cout << "Reversed array is" << endl;
+
+    // To print the Reversed array
+    printArray(arr, dim);
+
+    return 0;
+}
+

@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+
+int main ()
+{
+
+    string fullName;
+    string multiNames;
+    string multiChangeName;
+    string safe;
+    unsigned int posi;
+
+    do{
+    cout<<"enter the name :";
+    cin >> fullName;
+
+    if(fullName=="") break;
+
+    multiNames+=("<"+fullName+">, ");//guardar a string normal
+
+    //mudar o nome
+    posi=fullName.find_first_of(" ");
+
+    multiChangeName+=(fullName.erase(1,posi-1).replace(1,1,". ")+",  ");
+
+    }while(fullName!="");
+
+    cout<< "your names are: "<< multiNames<<endl<<endl; //all names
+    cout<< "your names changes are: "<< multiChangeName<<endl; //all names
+
+    return 0;
+}

@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// struct person with 3 fields
+struct Student {
+    char* nome;
+    int idade;
+    int nr;
+};
+
+// setting up rules for comparison
+// to sort the students based on age
+int comparator(const void* p, const void* q)
+{
+    return (((struct Student*)p)->nr - ((struct Student*)q)->nr);
+}
+
+// Driver program
+int main()
+{
+    int i = 0;
+    struct Student arr[5];
+
+    // Get the students data
+    arr[0].idade = 19;
+    arr[0].nome = "careca";
+    arr[0].nr = 80167;
+
+    arr[1].idade = 20;
+    arr[1].nome = "Irvin";
+    arr[1].nr = 20900;
+
+    arr[2].idade = 19;
+    arr[2].nome = "Nunias";
+    arr[2].nr= 30231;
+
+    arr[3].idade = 18;
+    arr[3].nome = "Branco";
+    arr[3].nr = 90670;
+
+    arr[4].idade = 21;
+    arr[4].nome = "Edgar";
+    arr[4].nr = 65555;
+
+    // Print the Unsorted Structure
+    cout<<"Unsorted Student Records:"<<endl;
+    for (i = 0; i < 5; i++) {
+        cout << "nr=" <<arr[i].idade<< "   Name="<< arr[i].nome  << "   idade="<<arr[i].nr <<endl ;
+
+    }
+    // Sort the structure
+    // based on the specified comparator
+    qsort(arr, 5, sizeof(struct Student), comparator);
+
+    // Print the Sorted Structure
+    cout<<endl<<endl<< "Student Records sorted by nr :" <<endl;
+    for (i = 0; i < 5; i++) {
+         cout << "nr=" << arr[i].idade  << "   Name=" << arr[i].nome <<  "   idade=" << arr[i].nr <<endl ;
+    }
+}

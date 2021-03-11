@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+const int N=6;
+//-----------------------------------------------------------------------------------
+int indiceMin(float tab[ ],int inicio,int fim) // Devolve o �ndice do menor elemento da
+{                                              // Tabela entre os �ndices inicio e fim
+    int i, idxMenor;
+    idxMenor = inicio;                  // Assume que o primeiro elemento � o menor
+    for(i = inicio + 1; i <= fim; i++)  // Percorre a tabela entre inicio+1 e fim
+    if(tab[idxMenor]<tab[i])            // Se o elemento atual � menor do que aquele que
+    idxMenor = i;                       // consider�vamos menor ent�o o elemento actual passa
+                                        // a ser considerado o menor.
+return(idxMenor);
+}
+//-----------------------------------------------------------------------------------
+void troca(float tab[], int i, int j) {
+    float aux = tab[i];
+    tab[i] = tab[j];
+    tab[j] = aux;
+}
+//-----------------------------------------------------------------------------------
+// Ordena uma tabela tab com comp elementos
+void ordenacaoSelecao(float tab[ ],int comp) {
+for (int i = 0; i < comp-1; i++)
+troca(tab,i,indiceMin(tab,i,comp-1)); // Troca o elemento actual com o menor
+}
+
+
+
+void imprimeTabela(const char *nomeTab, float tab[], int numElem) {
+cout << nomeTab << " = ";           // Imprime nome da tabela =
+for (int i=0; i<numElem; i++) {     // percorre todos os elementos da tabela
+cout << tab[i] << "/";
+}
+cout << endl; // muda de linha no final
+}
+
+
+
+//-----------------------------------------------------------------------------------
+int main() {
+    float tabela[N] = {20.6, 22,9, 1.2, 99.8, 67.99};   //diferentes temperaturas
+
+    imprimeTabela("Tabela original", tabela, N);
+    ordenacaoSelecao(tabela, N);
+    cout<<endl;
+    imprimeTabela("Tabela ordenada", tabela, N);cout<<endl;
+}

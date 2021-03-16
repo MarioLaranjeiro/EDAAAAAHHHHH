@@ -1,33 +1,29 @@
 #include <iostream>
 using namespace std;
-
-
 int main ()
 {
 
-    string fullName;
-    string multiNames;
-    string multiChangeName;
-    string safe;
-    unsigned int posi;
+    string Nome;
+    string Lista;
+    string Lista_alterada;
 
-    do{
-    cout<<"enter the name :";
-    cin >> fullName;
+    do
+    {
+    cout<<"Insira o nome: ";
+    getline(cin,Nome);
 
-    if(fullName=="") break;
+    if(Nome.length()==0) break;
 
-    multiNames+=("<"+fullName+">, ");//guardar a string normal
+    Lista=Lista + (" "+Nome+",   ");//guarda os varios nomes na string lista
 
-    //mudar o nome
-    posi=fullName.find_first_of(" ");
+   int Primeiro_nome= Nome.find_first_of(" ");
 
-    multiChangeName+=(fullName.erase(1,posi-1).replace(1,1,". ")+",  ");
+   Lista_alterada= Lista_alterada + (Nome.erase(1,Primeiro_nome-1).replace(1,1,". ") + ",  ");
 
-    }while(fullName!="");
+    }while(Nome!="");
 
-    cout<< "your names are: "<< multiNames<<endl<<endl; //all names
-    cout<< "your names changes are: "<< multiChangeName<<endl; //all names
+    cout<<endl<< "Os nomes inseridos: "<< Lista<<endl<<endl;
+    cout<< "Abrevituras: "<< Lista_alterada << endl<<endl;
 
     return 0;
 }

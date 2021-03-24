@@ -1,0 +1,55 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+struct Registo {
+    string nome;
+};
+
+int comparaNome(const void *preg1, const void *preg2) {
+    if((((Registo *)preg1)->nome>((Registo *)preg2)->nome))
+        return 1;
+    if((((Registo *)preg1)->nome==((Registo *)preg2)->nome))
+        return 0;
+    else
+        return -1;
+}
+
+int main()
+{
+
+    string linha;
+    int n=100,N=0;
+    Registo tab[n];
+
+    //abre para ler
+    ifstream file1("dados_desord.txt");
+    if(file1.is_open())
+    {
+        while(getline(file1,linha))
+        {
+            tab[N].nome=linha;
+            N++;
+        }
+    }
+
+    //ordena
+    qsort((void *) tab, N, sizeof(Registo), comparaNome);
+    file1.close();
+
+    //abre para escrever
+    ofstream file2;
+    file2.open ("dados_ord.txt", ios::app);
+
+    for(int i=0; i<N; i++)
+    {
+        //cout<<tab[i].nome<<endl;
+        file2<<tab[i].nome<<endl;
+    }
+
+
+    file2.close();
+
+    return 0;
+}

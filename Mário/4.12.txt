@@ -1,0 +1,80 @@
+#include <iostream>
+#include <cstdlib>
+#include <iomanip>
+#include <chrono>
+
+using namespace std;
+
+void SelectionSort(int num_elem, double lista[]){
+    chrono::steady_clock::time_point start = chrono::steady_clock::now();
+    for(int j=0; j<num_elem-1; j++){
+        int mini_index=j;
+        for(int i=j+1; i< num_elem; i++){
+            if(lista[i]<lista[mini_index])
+                mini_index=i;
+            if(lista[j]>lista[mini_index]){
+                double aux = lista[j];
+                lista[j] = lista[mini_index];
+                lista[mini_index] = aux;
+            }
+        }
+    }
+    chrono::steady_clock::time_point end = chrono::steady_clock::now();
+    chrono::steady_clock::duration d = end-start;
+    cout<<"Time: "<<chrono::duration_cast<chrono::microseconds>(d).count()<<" (microsegundos)"<<endl;
+}
+
+void BubbleSort(int num_ele, double lista[]){
+    chrono::steady_clock::time_point start = chrono::steady_clock::now();
+    for(int j=0; j<num_ele-1;j++){
+        for(int i=0; i<num_ele-1; i++){
+            if(lista[i]>lista[i+1]){
+                double aux = lista[i];
+                lista[i] = lista[i+1];
+                lista[i+1] = aux;
+            }
+        }
+    }
+    chrono::steady_clock::time_point end = chrono::steady_clock::now();
+    chrono::steady_clock::duration d = end-start;
+    cout<<"Time: "<<chrono::duration_cast<chrono::microseconds>(d).count()<<" (microsegundos)"<<endl;
+}
+
+int Compara_num(const void *p1,const void *p2){
+    return (*(int *)p1 - *(int *)p2);
+}
+
+int main()
+{
+    int op;
+    double lista[200000];
+    for(int i=0; i<200000;i++)
+        lista[i] = arc4random() % 10;
+
+    cout<<endl<<setw(12)<<"MENU"<<setw(8)<<endl;
+    cout<<left<<setw(10)<<"1-Testar Selection Sort"<<endl;
+    cout<<left<<setw(10)<<"2-Testar Bubble Sort"<<endl;
+    cout<<left<<setw(10)<<"3-Testar Quick-Sort"<<endl<<endl;
+    cin>>op;
+    switch (op) {
+        case 1:
+            cout<<"Selection Sort"<<endl;
+            SelectionSort(200000,lista);
+        break;
+
+        case 2:
+            cout<<"Bubble Sort"<<endl;
+            BubbleSort(200000,lista);
+        break;
+
+        case 3:
+            chrono::steady_clock::time_point start = chrono::steady_clock::now();
+            qsort((void*) lista, 200000, sizeof(lista[0]), Compara_num);
+            chrono::steady_clock::time_point end = chrono::steady_clock::now();
+            chrono::steady_clock::duration d = end-start;
+            cout<<"Quick-Sort"<<endl;
+            cout<<"Time: "<<chrono::duration_cast<chrono::microseconds>(d).count()<<" (microsegundos)"<<endl;
+        break;
+
+    }
+}

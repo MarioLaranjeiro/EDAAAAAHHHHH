@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cstdlib>
+#include<time.h>
+
+using namespace std;
+const int N=20;
+
+int procuraindice(int *tab, int dim, int num){
+    for(int i = 0; i < dim; i++){
+        if(tab[i] == num)
+                return i;
+    }
+    return -1;
+}
+
+int main()
+{
+    srand(time(0));
+   int t[N],num;
+   cout<<"Insira o numero que quer procurar"<<endl;
+   cin>> num;
+
+
+   for(int i = 0; i < N ; i++)
+       t[i] = -10 + rand() % (42 + 10 + 1);
+
+
+   for (int j = 0; j<N ; j++)
+       cout << t[j] <<" ,";
+
+   if(procuraindice(t,N,num)>=0)
+       cout <<endl<< "\t" << "Esta no Indice: " << procuraindice(t,N,num) << endl;
+
+   else
+       cout <<endl<<"\t" << "Nao foi encontrado "<<endl;
+
+    return 0;
+}

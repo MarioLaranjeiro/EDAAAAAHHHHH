@@ -1,0 +1,73 @@
+#include <iostream>
+#include <cstdlib>
+#include <random>
+#include<time.h>
+
+using namespace std;
+const int N=20;
+
+void troca(double tab[], int a, int b){
+    double aux = tab[b];
+    tab[b] = tab[a];
+    tab[a] = aux;
+}
+
+int indiceMenor(double array[], int inicio, int fim){
+    int aux = inicio;
+    for(int i = inicio+1; i <= fim; i++){
+        if(array[i] < array[aux]) aux = i;
+    }
+    return aux;
+}
+
+void selectionSort(double array[], int n){
+    for(int i = 0; i < n-1; i++){
+        troca(array, i, indiceMenor(array, i, n-1));
+    }
+}
+
+int pesquisaBinaria(double arr[], int n, double k)
+{
+    int l = 0;
+    int r = n - 1;
+    int  Maiores = n;
+
+    //Procura numeros mais que k
+    while (l <= r) {
+        int m = l + (r - l) / 2;
+
+        //Se o meio é maior que o valor
+        //update Maiores e direita
+        if (arr[m] > k) {
+            Maiores = m;
+            r = m - 1;
+        }
+
+        // Se o meio e menor ou igual que o valor,  update esquerda
+        else
+            l = m + 1;
+    }
+
+    return (n -  Maiores);
+}
+
+int main()
+{
+   srand(time(0));
+   double Temperatura[N],min;
+   cout<<"Insira o min"<<endl;
+   cin>> min;
+
+   for(int i = 0; i < N ; i++)
+       Temperatura[i] =double(rand()) * (45.5 + 12.5) / RAND_MAX -12.5;
+
+
+   selectionSort(Temperatura,N);
+
+   for (int j = 0; j<N ; j++)
+       cout << Temperatura[j]<< ", ";
+
+       cout<<endl<< "\t" << "nr de  elementos superiores a min: "<<pesquisaBinaria(Temperatura, N,min)<<endl<<endl<<endl;
+
+    return 0;
+}

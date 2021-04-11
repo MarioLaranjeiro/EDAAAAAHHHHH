@@ -1,0 +1,114 @@
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
+
+using namespace std;
+
+struct Ficha{
+   string nome;
+    int numeroCC;
+    int altura; //cm
+   string naturalidade;
+};
+
+//---------------------------------------------------------------------------------------------
+void troca(int tab[], int a, int b){
+   int aux = tab[b];
+    tab[b] = tab[a];
+    tab[a]= aux;
+
+}
+
+int indiceMenor(Ficha array[], int inicio, int fim,int indices[]){
+    int aux = inicio;
+    for(int i = inicio+1; i <= fim; i++){
+        if(array[indices[i]].numeroCC < array[indices[aux]].numeroCC) aux = i;
+    }
+    return aux;
+}
+
+void selectionSort(Ficha array[], int n,int indices[]){
+    for(int i = 0; i < n-1; i++){
+        troca(indices, i, indiceMenor(array, i, n-1,indices));
+    }
+}
+
+//------------------------------------------------------------------------------------------------
+int buscaBinaria( Ficha *CC,int tamanho, int numCC,int indices[]) {
+    // Na busca binária, espera-se que o vetor esteja ordenado
+
+    int i = 0;
+    int f = tamanho -1;
+    int meio;
+    while (i <= f) {
+        meio = (i+f)/2;
+        if (CC[ indices[meio]].numeroCC == numCC)
+            return  indices[meio];
+        else {
+            if (numCC > CC[ indices[meio]].numeroCC)
+                i=meio+1;
+            else
+                f=meio-1;
+        }
+    }
+    return -1;
+}
+//------------------------------------------------------------------------------------------------
+
+
+
+int main()
+{
+    int numCC,n=4;
+    Ficha CC[4];
+    int indices[]={2,3,1,0};
+
+
+    CC[0].nome="Ana Manel";
+    CC[0].numeroCC = 3234;
+    CC[0].altura = 180;
+    CC[0].naturalidade =  "Viseu" ;
+
+    CC[1].nome="Edgar";
+    CC[1].numeroCC = 2001;
+    CC[1].altura = 183;
+    CC[1].naturalidade = "Porto" ;
+
+    CC[2].nome="Ti Pedro";
+    CC[2].numeroCC = 1345;
+    CC[2].altura = 176;
+    CC[2].naturalidade = "Coimbra" ;
+
+    CC[3].nome="Vitor";
+    CC[3].numeroCC = 1576;
+    CC[3].altura = 166;
+    CC[3].naturalidade = "Algarve";
+
+
+    cout<<"LISTA DESORDENADA DE CIDADAO"<<endl;
+    for(int i = 0; i < 4; i++){
+    cout << CC[i].nome  << " " <<  CC[i].numeroCC << " " << CC[i].altura << " " << CC[i].naturalidade << endl;
+    }
+    cout << endl;
+
+
+//----------------------------------------------
+selectionSort(CC,n,indices);
+//----------------------------------------------
+
+    cout<<"LISTA ORDENADA DE CIDADAO pelo numero"<<endl;
+
+  for(int i = 0; i < 4; i++){
+    cout << CC[indices[i]].nome  << "  nr:" <<   CC[indices[i]].numeroCC << " " <<  CC[indices[i]].altura << " " <<  CC[indices[i]].naturalidade << endl;
+    }
+
+    do{
+    cout <<endl<<endl<< "Insira o numero do CC que deseja: " << endl;
+    cin >> numCC ;
+    cout <<endl<<"----------------------------------------------"<<endl<< numCC<< " situa-se no Indice :" <<  buscaBinaria(CC, 4, numCC,indices) << endl<<"----------------------------------------------";   //Imprime o Indice
+    }while(numCC != 0); //Quando inserido 0 termina!8
+
+    cout<<endl<<endl<<"fim do programa";
+
+    return 0;
+}

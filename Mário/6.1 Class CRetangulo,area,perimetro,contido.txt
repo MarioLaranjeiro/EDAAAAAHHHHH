@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+
+class CRetangulo{
+  private:
+    int altura;
+    int comprimento;
+    static int numRet;
+
+  public:
+    CRetangulo(int a, int c){
+        altura=a;
+        comprimento=c;
+        numRet++;
+    }
+
+    ~CRetangulo(){
+        numRet--;
+    }
+    int area(void);
+    int perimetro(void);
+    bool contido(const CRetangulo &);
+    void Imprime(void);
+};
+
+int CRetangulo::numRet=0;
+
+int CRetangulo::area(){
+    return comprimento*altura;
+}
+
+int CRetangulo::perimetro(){
+return 2*comprimento+2*altura;
+}
+
+bool CRetangulo::contido(const CRetangulo &ret){
+if(altura <= ret.altura && comprimento <= ret.comprimento)
+    return true;
+return false;
+}
+
+void CRetangulo::Imprime(){
+    cout<<endl;
+    for (int i=0; i < altura; i++) {
+        for (int j=0; j < comprimento; j++) {
+
+            if ((i>0) && (i<altura-1) && (j>0) && (j<comprimento-1))
+                cout << " ";
+            else
+                cout << "*";
+        }
+    cout << endl;
+    }
